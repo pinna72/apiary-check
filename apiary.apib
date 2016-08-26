@@ -1,0 +1,179 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# History 
+
+History is an API allowing consumers to view manage bookmarks and recent activities.
+
+## List all bookmarks [/bookmarks/{pname}]
+
+### List All Bookmarks [GET]
+
+Receive all the bookmarks related a specific project (WRS, WAO, AOA)
+
++ Response 200 (application/json)
+
+        [
+          {
+            "title": "123123",
+            "additionalInfo": {},
+            "type": "INT",
+            "uniqueId": "45",
+            "additionalIds": {},
+            "addDate": 1459763139026,
+            "errorMessages": []
+          }, {
+            "title": "TEST SHORT NAME UPDATED",
+            "additionalInfo": {},
+            "type": "MAK",
+            "uniqueId": "10",
+            "additionalIds": {},
+            "addDate": 1471941766146,
+            "errorMessages": []
+          }, {
+            "title": "ahh",
+            "additionalInfo": {},
+            "type": "MAK",
+            "uniqueId": "5",
+            "additionalIds": {},
+            "addDate": 1472215821803,
+            "errorMessages": []
+          }
+        ]
+
+
+## Add a bookmark [/addBookmark?project={pname}]
+
+### Add Bookmark [POST]
+
+Create a new bookmark and associate it to the project specified in the payload.
+
++ Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
+
++ Response 200 (application/json)
+
+## Update a bookmark [/updateBookmark?project={pname}]
+
+### Update Bookmark [POST]
+
+Update an existing bookmark for a specific project.
+
++ Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
+
++ Response 200 (application/json)
+
+
+## Remove a bookmark [/removeBookmark?project={pname}]
+
+### Remove Bookmark [POST]
+
+Remove an existing bookmark for a specific project.
+
++ Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
+        
++ Response 200 (application/json)
+
+
+## Questions Collection [/questions]
+
+### List All Questions [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 2048
+                    }, {
+                        "choice": "Python",
+                        "votes": 1024
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 512
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 256
+                    }
+                ]
+            }
+        ]
+
+### Create a New Question [POST]
+
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
++ Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Body
+
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 0
+                    }, {
+                        "choice": "Python",
+                        "votes": 0
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 0
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 0
+                    }
+                ]
+            }
